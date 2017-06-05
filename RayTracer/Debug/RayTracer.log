@@ -1,0 +1,5 @@
+﻿  main.cpp
+c:\users\alexander\documents\raytracer\raytracer\main.cpp(46): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\alexander\documents\raytracer\raytracer\main.cpp(47): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  RayTracer.vcxproj -> C:\Users\Alexander\Documents\RayTracer\Debug\RayTracer.exe
+  RayTracer.vcxproj -> C:\Users\Alexander\Documents\RayTracer\Debug\RayTracer.pdb (Partial PDB)
