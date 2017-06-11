@@ -1,5 +1,6 @@
 #pragma once
 #include "common.h"
+#include "Sphere.h"
 
 Colour red() { return Colour(0, 0, 255); }
 Colour white() { return Colour(255, 255, 255); }
@@ -7,6 +8,9 @@ Colour black() { return Colour(0, 0, 0); }
 
 std::vector<Sphere> Spheres;
 std::vector<LightSource*> LightSources;
+
+
+//std::vector<Bounds> BoundingVolumes;
 
 //screen size. We'll need the ratio to display things properly.
 int height = 480;
@@ -40,4 +44,8 @@ struct MyImage {
 };
 
 MyImage image;
+
+uint raysCast;
+uint sphereIntersections;
+uint boundingBoxHits;
 

@@ -1,5 +1,7 @@
+#pragma once
 #include "common.h"
 #include "main.h"
+#include <time.h>
 
 /*Place Spheres and light sources*/
 void BuildScene() 
@@ -21,14 +23,15 @@ vec3 castRay(vec3 o, vec3 d)
 {
 	vec3 ray(d.x() - o.x(), d.y() - o.y(), d.z() - o.z());
 	ray.normalize();
+	raysCast += 1;
 	return ray;
 }
-
 
 /*Ray tracing happens here*/
 void ScanImage()
 {
 	cout << "Ray tracing scene. This may take a while..." << endl;
+	clock_t timeStart = clock();
 	vec3 eye(0.0f, 0.0f, -2.0);  //if we assume image pane has origin at 0,0,0, then eye is 10 units in front of it, and 'd' = 10
 	float dist = eye.z();
 
@@ -74,24 +77,31 @@ void ScanImage()
 			/******END OF GROUND DRAWING******/
 
 			//draw spheres
-			for (std::vector<Sphere>::iterator itr = Spheres.begin(); itr != Spheres.end(); ++itr)
-			{
-				float b = (r.dot(eye - (itr)->GetPos()));
-				float c = (eye - (itr)->GetPos()).dot(eye - (itr)->GetPos()) - pow((itr)->GetRad(), 2);
-				float discriminant = sqrt(pow(b, 2) - c);
-				if (discriminant >= 0) //don't waste computation time if no intersection
+				for (std::vector<Sphere>::iterator itr = Spheres.begin(); itr != Spheres.end(); ++itr)
 				{
-					t = fmin(((-1)*b - discriminant), ((-1)*b + discriminant));
-					intersection = true;
-					if (t < tmin)
+					if ((*itr).CheckBoundsIntersection(eye, r))
 					{
-						vec3 p(eye.x() + t*r.x(), eye.y() + t*r.y(), eye.z() + t*r.z());
-						tmin = t;
-						image(row, col) = (itr)->GetColour();
+						boundingBoxHits += 1;
+						float b = (r.dot(eye - (*itr).GetPos()));
+						float c = (eye - (*itr).GetPos()).dot(eye - (*itr).GetPos()) - pow((*itr).GetRad(), 2);
+						float discriminant = sqrt(pow(b, 2) - c);
+						if (discriminant >= 0) //don't waste computation time if no intersection
+						{
+							t = fmin(((-1)*b - discriminant), ((-1)*b + discriminant));
+							intersection = true;
+							sphereIntersections += 1;
+							if (t < tmin)
+							{
+								vec3 p(eye.x() + t*r.x(), eye.y() + t*r.y(), eye.z() + t*r.z());
+								tmin = t;
+								image(row, col) = (itr)->GetColour();
+							}
+						}
 					}
-				}
-			}
 
+				
+				}
+			
 			//just draw black if ray hit nothing
 			if (!intersection)
 			{
@@ -100,14 +110,21 @@ void ScanImage()
 
 		}
 	}//end of scan loop
+
+	clock_t timeEnd = clock();
+	cout << "Render time: " << float(timeEnd - timeStart)/1000.0f << " seconds" << endl;
+	cout << "Rays cast: " << raysCast << endl;
+	cout << "Rays that hit spheres: " << sphereIntersections << endl;
+	cout << "Bounding box hits: " << boundingBoxHits << endl;
 }
 
 int main()
 {
+	raysCast = sphereIntersections = boundingBoxHits = 0;
 	BuildScene();
 	ScanImage();
 	image.show();
 	// image.save("output.png"); ///< Does not work on Windows!
-
+ 
 	return EXIT_SUCCESS;
 }
