@@ -20,7 +20,8 @@ public:
 	Colour GetColour() { return m_cColour; }
 	int GetGloss() { return m_iGloss; }
 	//Bounds GetBoundingBox() { return bounds; }
-	bool CheckBoundsIntersection(vec3 o, vec3 r);
+	bool CheckBoundsIntersection(vec3 o, vec3 r, float t0, float t1);
+	void ReportPlanes(vec3 o, vec3 r);
 
 
 private:

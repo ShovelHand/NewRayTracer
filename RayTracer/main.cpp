@@ -1,21 +1,12 @@
 #pragma once
-#include "common.h"
 #include "main.h"
 #include <time.h>
 
-/*Place Spheres and light sources*/
+/*The scene is now contained (and arranged) within its own class. This was done to help me 
+build relationships between main, the scene, and the pixel artist.*/
 void BuildScene() 
 {
-	Sphere sphere1(vec3(0.85f, -1.0f, 1.0f), 0.25f, Colour(255, 0, 0), 50);
-	Spheres.push_back(sphere1);
-	
-	Sphere sphere4(vec3(-0.4f, -0.75f, 0.5f), 0.04f, Colour(150, 0, 150), 10000);
-	Spheres.push_back(sphere4);
-	Sphere sphere5(vec3(-0.5f, -1.0f, 0.5f), 0.4f, Colour(150, 155, 150), 10000);
-	Spheres.push_back(sphere5);
-
-	LightSource light1(vec3(-0.5f, -1.7f, 1.75f), Colour(150, 150, 150), 10);
-	LightSources.push_back(&light1);
+	scene.BuildScene();
 }
 
 /*cast a ray*/
@@ -23,7 +14,6 @@ vec3 castRay(vec3 o, vec3 d)
 {
 	vec3 ray(d.x() - o.x(), d.y() - o.y(), d.z() - o.z());
 	ray.normalize();
-	raysCast += 1;
 	return ray;
 }
 
@@ -45,11 +35,12 @@ void ScanImage()
 	for (int row = 0; row < image.rows; ++row) {
 		for (int col = 0; col < image.cols; ++col) {
 			//construct ray
-			float u = (left + (right - left)*(col + 0.5) / image.cols);
-			float v = (bottom + (top - bottom)*(row + 0.5) / image.rows);
+			float u = (left + (right - left)*(col + 0.5f) / image.cols);
+			float v = (bottom + (top - bottom)*(row + 0.5f) / image.rows);
 
 			vec3 d(u, v, 0);
 			vec3 r = castRay(eye, d);
+			raysCast += 1;
 			float tmin = 1000;//arbitrarily large instantiation for infinity.
 			float t;
 			bool intersection = false;
@@ -77,13 +68,14 @@ void ScanImage()
 			/******END OF GROUND DRAWING******/
 
 			//draw spheres
-				for (std::vector<Sphere>::iterator itr = Spheres.begin(); itr != Spheres.end(); ++itr)
+			vector<Sphere*> spheres = scene.GetSpheres();
+				for (std::vector<Sphere*>::iterator itr = spheres.begin(); itr != spheres.end(); ++itr)
 				{
-					if ((*itr).CheckBoundsIntersection(eye, r))
+					if ((*itr)->CheckBoundsIntersection(eye, r, -10.0f, 10.0f))
 					{
 						boundingBoxHits += 1;
-						float b = (r.dot(eye - (*itr).GetPos()));
-						float c = (eye - (*itr).GetPos()).dot(eye - (*itr).GetPos()) - pow((*itr).GetRad(), 2);
+						float b = (r.dot(eye - (*itr)->GetPos()));
+						float c = (eye - (*itr)->GetPos()).dot(eye - (*itr)->GetPos()) - pow((*itr)->GetRad(), 2);
 						float discriminant = sqrt(pow(b, 2) - c);
 						if (discriminant >= 0) //don't waste computation time if no intersection
 						{
@@ -94,12 +86,11 @@ void ScanImage()
 							{
 								vec3 p(eye.x() + t*r.x(), eye.y() + t*r.y(), eye.z() + t*r.z());
 								tmin = t;
-								image(row, col) = (itr)->GetColour();
+								image(row, col) = scene.artist.DrawSpherePixel(*itr);
 							}
 						}
 					}
 
-				
 				}
 			
 			//just draw black if ray hit nothing

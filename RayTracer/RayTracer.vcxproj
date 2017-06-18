@@ -122,11 +122,15 @@
     <ClInclude Include="common.h" />
     <ClInclude Include="LightSource.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="PixelArtist.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Sphere.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LightSource.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PixelArtist.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sphere.cpp" />
   </ItemGroup>
   <ItemGroup>

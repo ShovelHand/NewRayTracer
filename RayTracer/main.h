@@ -1,14 +1,10 @@
 #pragma once
 #include "common.h"
-#include "Sphere.h"
+#include "Scene.h"
 
 Colour red() { return Colour(0, 0, 255); }
 Colour white() { return Colour(255, 255, 255); }
 Colour black() { return Colour(0, 0, 0); }
-
-std::vector<Sphere> Spheres;
-std::vector<LightSource*> LightSources;
-
 
 //std::vector<Bounds> BoundingVolumes;
 
@@ -44,6 +40,7 @@ struct MyImage {
 };
 
 MyImage image;
+Scene scene;
 
 uint raysCast;
 uint sphereIntersections;

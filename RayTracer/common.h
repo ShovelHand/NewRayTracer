@@ -11,6 +11,8 @@
 #include "Sphere.h"
 #include "LightSource.h"
 
+
+
 using namespace std;
 using namespace cv;
 
@@ -21,5 +23,8 @@ typedef Eigen::Vector3f vec3;
 typedef Eigen::Vector4f vec4;
 typedef Eigen::Matrix4f mat4;
 typedef Eigen::Matrix3f mat3;
+
+
+
 
 
