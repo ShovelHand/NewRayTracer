@@ -12,7 +12,6 @@
 #include "LightSource.h"
 
 
-
 using namespace std;
 using namespace cv;
 

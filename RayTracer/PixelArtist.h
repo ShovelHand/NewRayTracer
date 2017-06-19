@@ -10,8 +10,17 @@ public:
 	PixelArtist();
 	~PixelArtist();
 
-	Colour DrawGroundPixel();
-	Colour DrawSpherePixel(Sphere* sphere);
+	Colour DrawGroundPixel(vec3 p);
+	Colour DrawSpherePixel(Sphere* sphere, vec3 p);
+	void SetLights(vector<LightSource*> lights) { LightSources = lights; }
+	void SetSpheres(vector<Sphere*> sp) { Spheres = sp; }
+	void SetEye(vec3 o) { v = o; }
+
+private:
+	Colour AddLight(Colour colour, vec3 n, vec3 p, float gloss);
+	std::vector<LightSource*> LightSources;
+	std::vector<Sphere*> Spheres;
+	vec3 v;
 
 };
 

@@ -23,6 +23,8 @@ void ScanImage()
 	cout << "Ray tracing scene. This may take a while..." << endl;
 	clock_t timeStart = clock();
 	vec3 eye(0.0f, 0.0f, -2.0);  //if we assume image pane has origin at 0,0,0, then eye is 10 units in front of it, and 'd' = 10
+	//for shading considerations, the pixelartist needs to know where the viewer eye is.
+	scene.artist.SetEye(eye);
 	float dist = eye.z();
 
 	//finding pixel coords
@@ -63,7 +65,7 @@ void ScanImage()
 				vec3 p(eye.x() + t*r.x(), eye.y() + t*r.y(), eye.z() + t*r.z()); //point of intersection
 				//TODO: lighting calculations go here.
 
-				image(row, col) = colour;
+				image(row, col) = scene.artist.DrawGroundPixel(p);
 			}
 			/******END OF GROUND DRAWING******/
 
@@ -86,7 +88,7 @@ void ScanImage()
 							{
 								vec3 p(eye.x() + t*r.x(), eye.y() + t*r.y(), eye.z() + t*r.z());
 								tmin = t;
-								image(row, col) = scene.artist.DrawSpherePixel(*itr);
+								image(row, col) = scene.artist.DrawSpherePixel(*itr, p);
 							}
 						}
 					}
