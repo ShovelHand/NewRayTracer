@@ -1,4 +1,3 @@
-﻿  PixelArtist.cpp
-c:\users\alexander\documents\raytracer\raytracer\pixelartist.cpp(68): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  Scene.cpp
   RayTracer.vcxproj -> C:\Users\Alexander\Documents\RayTracer\Debug\RayTracer.exe
   RayTracer.vcxproj -> C:\Users\Alexander\Documents\RayTracer\Debug\RayTracer.pdb (Partial PDB)

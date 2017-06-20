@@ -50,7 +50,7 @@ void ScanImage()
 			/******GROUND DRAWING*********/
 			//check for ground plane intersection
 			vec3 p0(0, 1, 2);
-			vec3 n(0, 1, 0); //normal vector to plane on the x-z plane
+			vec3 n(0, -1, 0); //normal vector to plane on the x-z plane
 			Colour groundColour(50, 50, 50);
 
 			if (r.dot(n) != 0 && row >= image.rows / 2) //the inequality is here until I can figure out why the plane appears in the sky.

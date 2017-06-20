@@ -31,21 +31,22 @@ Colour PixelArtist::AddLight(Colour colour, vec3 n, vec3 p, float gloss)
 
 		//check and see if this point is in the shadow of another object closer to the light
 		//TODO: This will probably be where recursive ray checking (for reflections, shadows, everything) ends up going.
-		//for (std::vector<Sphere*>::iterator itr = Spheres.begin(); itr != Spheres.end(); ++itr)
-		//{
+		for (std::vector<Sphere*>::iterator itr = Spheres.begin(); itr != Spheres.end(); ++itr)
+		{
 		//	if ((*itr)->CheckBoundsIntersection(p, n, -10.0f, 10.0f))
-		//	{
-		//		float b = (ShadowRay.dot((*itr)->GetPos() - p ));
-		//		float c = (p - (*itr)->GetPos()).dot(p - (*itr)->GetPos()) - pow((*itr)->GetRad(), 2);
-		//		float discriminant = sqrt(pow(b, 2) - c);
-		//		if (discriminant >= 0) //don't waste computation time if no intersection
-		//		{
-		//			float t = fmin(((-1)*b - discriminant), ((-1)*b + discriminant)); //will probably want distance t later
-		//			inShadow = true;
-		//		}
-		//	}
+			{
+				float b = (ShadowRay.dot(p - (*itr)->GetPos() ));
+				float c = (p - (*itr)->GetPos()).dot(p - (*itr)->GetPos()) - pow((*itr)->GetRad(), 2);
+				float discriminant = sqrt(pow(b, 2) - c);
+				if (discriminant >= 0) //don't waste computation time if no intersection
+				{
+					float t = fmin(((-1)*b - discriminant), ((-1)*b + discriminant));
+					if(t > 0.000001f) //a check against self intersection
+						inShadow = true;
+				}
+			}
 
-		//}
+		}
 
 		if(!inShadow)
 			colour += colour * ((*itr)->GetI() * fmax(0, n.dot(l)));
