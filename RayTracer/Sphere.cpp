@@ -2,7 +2,7 @@
 
 
 
-Sphere::Sphere(vec3 pos, float rad, Colour colour, int gloss)
+Sphere::Sphere(vec3 pos, float rad, Colour colour, float gloss)
 	:m_vPos(pos)
 	, m_fRadius(rad)
 	, m_cColour(colour)

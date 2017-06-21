@@ -12,7 +12,7 @@ struct Bounds {
 class Sphere
 {
 public:
-	Sphere(vec3 pos, float rad, Colour colour, int gloss);
+	Sphere(vec3 pos, float rad, Colour colour, float gloss);
 	~Sphere();
 
 	vec3 GetPos() { return m_vPos; }

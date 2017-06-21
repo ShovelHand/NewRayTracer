@@ -18,9 +18,9 @@ public:
 
 private:
 	Colour AddLight(Colour colour, vec3 n, vec3 p, float gloss);
+	vec3 ArtistRay(vec3 o, vec3 d); //trying to move main's CastRay to Common.h causes compiler errors. I don't get it.
 	std::vector<LightSource*> LightSources;
 	std::vector<Sphere*> Spheres;
 	vec3 v;
-
 };
 
