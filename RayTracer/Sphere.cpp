@@ -17,9 +17,9 @@ Sphere::~Sphere()
 
 void Sphere::BuildBoundingBox()
 {
-	float r = m_fRadius + 0.275f; //bounds checking had bad misses when bounding box was tangent to sphere
-	bounds[0] = vec3(m_vPos.x() - r, m_vPos.y() - r, m_vPos.z() + r);
-	bounds[1] = vec3(m_vPos.x() + r, m_vPos.y() + r, m_vPos.z() - r);
+	float r = m_fRadius + 0.05f; //bounds checking had bad misses when bounding box was tangent to sphere
+	bounds[0] = vec3(m_vPos.x() - r, m_vPos.y() - r, m_vPos.z() - r);
+	bounds[1] = vec3(m_vPos.x() + r, m_vPos.y() + r, m_vPos.z() + r);
 }
 
 //Check to see if a ray passes through a sphere's bounding box before doing more expensive ray/sphere intersection test.

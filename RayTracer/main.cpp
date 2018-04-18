@@ -2,13 +2,6 @@
 #include "main.h"
 #include <time.h>
 
-/*The scene is now contained (and arranged) within its own class. This was done to help me 
-build relationships between main, the scene, and the pixel artist.*/
-void BuildScene() 
-{
-	scene.BuildScene();
-}
-
 /*cast a ray*/
 vec3 castRay(vec3 o, vec3 d)
 {
@@ -114,7 +107,7 @@ void ScanImage()
 int main()
 {
 	raysCast = sphereIntersections = boundingBoxHits = 0;
-	BuildScene();
+	scene.BuildScene();
 	ScanImage();
 	image.show();
 	// image.save("output.png"); ///< Does not work on Windows!

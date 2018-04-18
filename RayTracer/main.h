@@ -10,7 +10,7 @@ Colour black() { return Colour(0, 0, 0); }
 
 //screen size. We'll need the ratio to display things properly.
 int height = 480;
-int width = 480;
+int width = 600;
 
 struct MyImage {
 	/// Data (not private for convenience)

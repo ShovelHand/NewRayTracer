@@ -4,7 +4,6 @@
 
 PixelArtist::PixelArtist()
 {
-	
 }
 
 
