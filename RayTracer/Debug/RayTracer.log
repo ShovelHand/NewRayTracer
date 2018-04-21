@@ -1,3 +1,2 @@
 ﻿  main.cpp
-  RayTracer.vcxproj -> C:\Users\Alexander\Documents\RayTracer\Debug\RayTracer.exe
-  RayTracer.vcxproj -> C:\Users\Alexander\Documents\RayTracer\Debug\RayTracer.pdb (Partial PDB)
+LINK : fatal error LNK1168: cannot open C:\Users\Alexander\Documents\RayTracer\Debug\RayTracer.exe for writing

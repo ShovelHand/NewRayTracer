@@ -1,8 +1,4 @@
-﻿  Sphere.cpp
-  main.cpp
-c:\users\alexander\documents\raytracer\raytracer\main.cpp(45): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\alexander\documents\raytracer\raytracer\main.cpp(46): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  LightSource.cpp
-  Generating Code...
+﻿  main.cpp
+c:\users\alexander\documents\raytracer\raytracer\main.cpp(231): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   RayTracer.vcxproj -> C:\Users\Alexander\Documents\RayTracer\x64\Debug\RayTracer.exe
   RayTracer.vcxproj -> C:\Users\Alexander\Documents\RayTracer\x64\Debug\RayTracer.pdb (Partial PDB)

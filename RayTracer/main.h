@@ -42,7 +42,13 @@ struct MyImage {
 MyImage image;
 Scene scene;
 
+const vec3 eye(0.0f, 0.0f, -2.0);  //if we assume image pane has origin at 0,0,0, then eye is 10 units in front of it, and 'd' = 10
 uint raysCast;
 uint sphereIntersections;
 uint boundingBoxHits;
+std::vector<std::pair<int, int> > pixelRows;
+
+//thread semaphore
+HANDLE threadMutex;
+HANDLE imageWriteMutex;
 

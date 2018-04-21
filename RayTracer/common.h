@@ -1,6 +1,7 @@
 #pragma once
 #include <Eigen\Dense>
 
+#include <Windows.h>
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -10,7 +11,6 @@
 
 #include "Sphere.h"
 #include "LightSource.h"
-
 
 using namespace std;
 using namespace cv;
