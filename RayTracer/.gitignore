@@ -1,0 +1,6 @@
+$ cat .gitignore
+    # exclude everything except directory RayTracer
+    /*
+    !/RayTracer
+    /RayTracer/*
+    !/RayTracer/
