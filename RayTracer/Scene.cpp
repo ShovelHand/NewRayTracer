@@ -23,12 +23,12 @@ Scene::~Scene()
 
 void Scene::BuildScene()
 {
-	Sphere* sphere1 = new Sphere(vec3(0.45f, 0.4f, 1.0f), 0.25f, Colour(255, 0, 0), 100.0f);
+	Sphere* sphere1 = new Sphere(vec3(0.45f, 0.0f, 0.0f), 0.25f, Colour(255, 0, 0), 100.0f);
 	Spheres.push_back(sphere1);
 
-	Sphere* sphere4 = new Sphere(vec3(0.0f, 0.15f, 0.8f), 0.1f, Colour(150, 0, 150), 1000.0f);
+	Sphere* sphere4 = new Sphere(vec3(0.0f, 0.0f, 0.0f), 0.1f, Colour(150, 0, 150), 1000.0f);
 	Spheres.push_back(sphere4);
-	Sphere* sphere5 = new Sphere(vec3(-0.5f, -1.0f, 0.5f), 0.4f, Colour(150, 155, 150), 10000.0f);
+	Sphere* sphere5 = new Sphere(vec3(-0.5f, 0.0f, 0.0f), 0.4f, Colour(150, 155, 150), 10000.0f);
 	Spheres.push_back(sphere5);
 	
 	LightSource* light1 = new LightSource(vec3(0.0f, 0.0f, 1.0f), Colour(150, 150, 150), 5);

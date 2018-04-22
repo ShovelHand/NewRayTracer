@@ -34,7 +34,7 @@ struct MyImage {
 	}
 
 	/// Use files with "*.png" extension
-	void save(const std::string& filename) {
+	void save(std::string filename) {
 		cv::imwrite(filename, image);
 	}
 };

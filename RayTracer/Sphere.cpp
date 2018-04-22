@@ -17,7 +17,7 @@ Sphere::~Sphere()
 
 void Sphere::BuildBoundingBox()
 {
-	float r = m_fRadius + 0.05f; //bounds checking had bad misses when bounding box was tangent to sphere
+	float r = m_fRadius  + 0.1f; //bounds checking had bad misses when bounding box was tangent to sphere
 	bounds[0] = vec3(m_vPos.x() - r, m_vPos.y() - r, m_vPos.z() - r);
 	bounds[1] = vec3(m_vPos.x() + r, m_vPos.y() + r, m_vPos.z() + r);
 }
